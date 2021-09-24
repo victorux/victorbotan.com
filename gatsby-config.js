@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "my-portfolio",
+    siteUrl: "https://www.victorbotan.com",
+    title: "Victor Botan Portfolio Website",
   },
   plugins: [
     "gatsby-plugin-image",
@@ -9,6 +9,13 @@ module.exports = {
     "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-catch-links",
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [require("tailwindcss"), require("autoprefixer")],
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -25,5 +32,7 @@ module.exports = {
       },
       __key: "pages",
     },
+    "gatsby-transformer-remark"
+     
   ],
 };
