@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@layer base {
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+}
+header {
+    position: relative;
+    z-index: 0;
+}
+
+header::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.2;
+}
+
+.menu > a {
+    display: block;
+    line-height: 2;
+    position: relative;
+}
+
+.menu > a::after {
+    content: '';
+    height: 2px;
+    width: 0%;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    background-color: #fff;
+    transition: all 0.22s ease-in;
+}
+
+.menu > a:hover::after {
+    width: 100%;
+}
+
+/* .bg-hero {
+    background: linear-gradient(121.28deg, #0E5432 0%, #D6AD96 100%), linear-gradient(121.28deg, #FF0000 0%, #FFBABA 100%), linear-gradient(140.54deg, #7000FF 0%, #0015D1 72.37%), linear-gradient(307.43deg, #FFE927 0%, #00114D 100%), radial-gradient(107% 142.8% at 15.71% 104.5%, #FFFFFF 0%, #A7AA00 100%), #FFFFFF;
+background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+} */
