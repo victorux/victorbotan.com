@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="36px" viewBox="0 0 42 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Tech/Vue" transform="translate(0.000000, -6.000000)" fill-rule="nonzero">
+            <g id="logo" transform="translate(0.000000, 6.000000)">
+                <polygon id="Path" fill="#41B883" points="25.8496222 0 20.9998395 8.31378811 16.1502174 0 0 0 21 36 42 0"></polygon>
+                <polygon id="Path" fill="#34495E" points="25.3111454 0 20.4998408 8.46792148 15.6886955 0 8 0 20.5 22 33 0"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
