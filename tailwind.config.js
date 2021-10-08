@@ -15,6 +15,8 @@ module.exports = {
       textColor: {
         'primary': '#20242E',
         'secondary': '#505A6E',
+        'bluegray': '#606C85',
+        'darkgray': '#090A13',
         'link' : '#3145DF'
       },
       backgroundColor: {
@@ -22,7 +24,13 @@ module.exports = {
         'second' : '#181C2D'
       },
       maxWidth: {
-        '500px': '600px'
+        '500px': '600px',
+      },
+      maxHeight: {
+        '960px': '960px'
+      },
+      minHeight: {
+        '928px': '980px'
       },
       flex: {
         '1x2': '50%'
@@ -34,3 +42,5 @@ module.exports = {
   },
   plugins: ['gatsby-plugin-postcss'],
 }
+
+

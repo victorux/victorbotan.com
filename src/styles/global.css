@@ -59,6 +59,56 @@ header::after {
     padding-left: 7px;
 }
 
+.aboutme::after {
+    position: absolute;
+    content: '';
+    width: 91px;
+    height: 100px;
+    background: linear-gradient(115.58deg, #00FC19 0%, #1700A4 100.22%), radial-gradient(92.72% 100% at 50% 0%, #EBFFCB 0%, #651200 100%), radial-gradient(92.72% 100% at 50% 0%, #FAFF00 0%, #820000 100%), radial-gradient(109.21% 213.32% at 100% 0%, #FF4D00 0%, #00C2FF 100%), linear-gradient(127.43deg, #D50000 0%, #7856FF 100%);
+    background-blend-mode: lighten, overlay, lighten, screen, normal;
+    border-radius: 54% 46% 42% 58% / 60% 58% 42% 40%;
+    animation: wave 5s linear infinite;
+    left: -13px;
+    top: -120px;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+@keyframes wave {
+    20% {
+        border-radius: 45% 55% 62% 38% / 53% 51% 49% 47%;
+
+    }
+    40% {
+        border-radius: 45% 55% 49% 51% / 36% 51% 49% 64%;
+    }
+    60% {
+        border-radius: 60% 40% 57% 43% / 47% 62% 38% 53%;
+    }
+    80% {
+        border-radius: 60% 40% 32% 68% / 38% 36% 64% 62%;
+    }
+}
+
+.message {
+    position: relative;
+}
+
+.message::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background-image: url('../images/scoopedcorner.svg');
+    opacity: 0.2;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 /* .bg-hero {
     background: linear-gradient(121.28deg, #0E5432 0%, #D6AD96 100%), linear-gradient(121.28deg, #FF0000 0%, #FFBABA 100%), linear-gradient(140.54deg, #7000FF 0%, #0015D1 72.37%), linear-gradient(307.43deg, #FFE927 0%, #00114D 100%), radial-gradient(107% 142.8% at 15.71% 104.5%, #FFFFFF 0%, #A7AA00 100%), #FFFFFF;
 background-blend-mode: overlay, overlay, difference, difference, difference, normal;
