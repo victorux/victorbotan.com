@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 // images
 import herobg from "../../src/images/hero-bg.webp"
@@ -13,6 +13,12 @@ import vueImg from "../images/vue.svg"
 import eithApp from "../../src/images/eith-mess-app.webp"
 import nikeApp from "../../src/images/nikeapp.webp"
 import artdecoLogo from "../../src/images/artdeco.png"
+import paperPlane from "../images/paper-plane.svg"
+import dropDown from "../images/dropdown.svg"
+import dropDownWhite from "../images/dropdown-white.svg"
+import copy from "../images/copy.svg"
+import copied from "../images/copied.svg"
+import envelope from "../images/envelope.svg"
 
 // social icons
 import linkedin from "../images/social-icons/linkedin.svg"
@@ -33,6 +39,40 @@ const IndexPage = () => {
   const [isMenuHide, setMenuHide] = useState(true)
   const [myImg, setMyImg] = useState(false)
   const [techList, setTechList] = useState(false)
+  const [isDropDownHide, setDropDownHinde] = useState(true)
+  const [isCopied, setCopy] = useState(false)
+
+  const email = 'hi.victorb@gmail.com'
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText(email)
+    setCopy(!isCopied)
+    setTimeout(() => setCopy(false), 1500)
+  }
+
+  let dropDownEl = useRef(null);
+  useOutsideAlerter(dropDownEl);
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+                setDropDownHinde(true)
+            }
+        }
+
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref]);
+}
+
   
   const styles = useSpring({ to: { opacity: 1,  transform: 'translateY(0px)' }, from: {opacity: 0, transform: 'translateY(-10px)' }, delay: 400})
   const styles2 = useSpring({ to: { opacity: 1, transform: 'translateX(0)' }, from: {opacity: 0, transform: 'translateX(40px)' }, delay: 800 })
@@ -54,7 +94,7 @@ const IndexPage = () => {
       <header className="h-screen pt-8 md:pt-10 lg:pt-20 bg-cover flex flex-col relative" style={{ backgroundImage: `url('${herobg}')`}} >
       <div className="container mx-auto px-6 md:px-10">
         {/* Navigation */}
-        <nav className="flex select-none justify-between flex-wrap w-full items-center">
+        <nav className="flex select-none justify-between flex-wrap w-full items-center relative">
           <div className="z-20 hover:opacity-70">
               <animated.div style={styles}>
                 <a href="/" className="flex flex-row items-center">
@@ -67,10 +107,22 @@ const IndexPage = () => {
             <img src={isMenuHide ? menu : close } className="w-7 mt-2 md:w-8" alt=""></img>
           </label>
           <input className="hidden" type="checkbox" id="menu-toggle" onChange={ () => setMenuHide(!isMenuHide)} />
-          <animated.div style={styles} className="menu select-none hidden px-8 py-4 lg:flex flex-col lg:flex-row w-full lg:w-auto text-white bg-black bg-opacity-10 lg:bg-transparent text-xl z-20 gap-6 tracking-wide text-left p-0 mt-4 lg:mt-0 w-vh">
+          <animated.div style={styles} className="menu select-none hidden px-8 py-4 lg:flex flex-col lg:flex-row w-full lg:w-auto text-white bg-black bg-opacity-10 lg:bg-transparent text-xl z-50 gap-6 tracking-wide text-left p-0 mt-4 lg:mt-0 w-vh">
               <a href="#aboutme" className="leading-loose">About</a>
               <a href="#myworks" className="leading-loose">Work</a>
-              <a href="mailto:hi.victorb@gmail.com" className="leading-loose">hello@victorbotan.com</a>
+              <a href="#" className="leading-loose relative z-50 cursor-pointer" ><div className="flex flex-row gap-2" onClick={() => setDropDownHinde(!isDropDownHide)} >hi.victorb@gmail.com<img src={dropDownWhite} className={isDropDownHide ? '' : 'transform rotate-180'} /></div>
+                
+                {isDropDownHide 
+                  ? 
+                  '' 
+                  : 
+                  <div ref={dropDownEl} className="absolute -bottom-20 right-0 bg-white w-full flex flex-col text-base text-bluegray rounded">
+                    <a href="#" className="w-full px-4 py-2 border-b flex flex-row gap-3 cursor-pointer hover:text-blue-500" onClick={copyEmail}><img src={isCopied ? copied : copy } />{isCopied ? <span className="text-green-700">Copied!</span> : 'Copy to clipboard'}</a>
+                    <a href="mailto:hi.victorb@gmail.com" className="w-full px-4 py-2 flex flex-row gap-3 hover:text-blue-500" onClick={() => setDropDownHinde(!isDropDownHide)}><img src={envelope} />Open your mail app</a>
+                  </div>
+                }
+                
+              </a>
           </animated.div>
         </nav>
       </div> 
@@ -123,8 +175,8 @@ const IndexPage = () => {
               <div className="tech flex flex-row flex-wrap justify-items-center items-center text-secondary text-lg mt-6">
               <TechItem title={'JavaScript ES6+'} imgSrc={jsImg} />
               <TechItem title={'React'} imgSrc={reactImg} />
-              <TechItem title={'Vue'} imgSrc={vueImg} />
-              <TechItem title={'TailwindCSS'} imgSrc={jsImg} />
+              <TechItem title={'TailwindCSS'} imgSrc={vueImg} />
+              <TechItem title={'SCSS'} imgSrc={jsImg} />
                 {techList ? <React.Fragment>
                   <TechItem title={'Git'} imgSrc={jsImg} />
                   <TechItem title={'Photoshop'} imgSrc={jsImg} />
@@ -132,11 +184,11 @@ const IndexPage = () => {
                   <TechItem title={'Bootstrap'} imgSrc={jsImg} />
                   <TechItem title={'Styled Components'} imgSrc={jsImg} />
                   <TechItem title={'Gatsby'} imgSrc={jsImg} />
-                  <TechItem title={'UxPin'} imgSrc={jsImg} />
-                  <TechItem title={'Miro'} imgSrc={jsImg} />
+                  <TechItem title={'GraphQL'} imgSrc={jsImg} />
+                  <TechItem title={'Firebase'} imgSrc={jsImg} />
                 </React.Fragment> : ''}
               </div>
-              <button type="button" className="text-center text-xl w-full bg-transparent py-5 border-2 mt-4 text-link font-medium hover:border-transparent hover:bg-primary hover:text-white transition-all" onClick={() => setTechList(!techList)}>{techList ? 'Show Less' : 'Show All'}</button>
+              <button type="button" className="text-center text-xl w-full bg-transparent py-5 border-2 mt-4 text-link font-medium hover:border-transparent hover:bg-gray-100 transition-all flex flex-row items-center gap-3 justify-center" onClick={() => setTechList(!techList)}>{techList ? 'Show Less' : 'Show All'}<img src={dropDown} className={techList ? 'transform rotate-180 text-white' : ''}  /></button>
             </div>
           </div>
     </div>
@@ -163,7 +215,7 @@ const IndexPage = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center md:items-start justify-center mt-12  md:mt-20">
         <div className="flex flex-col justify-center md:justify-items-start">
           <div className="message mb-6 md:mb-12 p-4 md:p-6 rounded-t-2xl rounded-br-2xl bg-black bg-opacity-20 w-60 md:w-80"><p className="text-white text-2xl">Say hello, 🦊👋!!</p></div>
-          <button className="py-5 px-8 bg-pur items-center hover:bg-pur-dark hover:shadow-md transition duration-480 ease-in-out z-10 relative rounded-2xl text-white text-xl mx-auto md:mx-0">hi.victorb@gmail.com</button>
+          <a href="mailto:blank@blank.com"><button className="py-5 px-8 bg-pur items-center hover:bg-pur-dark hover:shadow-md transition duration-480 ease-in-out z-10 relative rounded-2xl text-white text-xl mx-auto md:mx-0 flex flex-row gap-3"><img src={paperPlane} />hi.victorb@gmail.com</button></a>
         </div>
         <div className="w-px hidden  md:block bg-white h-48  mx-12 opacity-50" />
         <div>
