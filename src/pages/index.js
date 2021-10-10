@@ -86,8 +86,6 @@ const IndexPage = () => {
     }
   }
 
-  window.addEventListener('scroll', changeImagePosition)
-
 
     return(
     <>
