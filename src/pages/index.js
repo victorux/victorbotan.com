@@ -86,6 +86,12 @@ const IndexPage = () => {
     }
   }
 
+  const isBrowser = typeof window !== "undefined"
+
+  if (isBrowser) {
+    window.addEventListener('scroll', changeImagePosition)
+  }
+
 
     return(
     <>
