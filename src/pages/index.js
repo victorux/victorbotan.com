@@ -34,6 +34,8 @@ import { useSpring, animated } from 'react-spring'
 // import ReactLoading from "react-loading" de realizat la urma!!
 
 
+import TechIcon from '../components/TechIcons'
+
 const IndexPage = () => {
 
   const [isMenuHide, setMenuHide] = useState(true)
@@ -91,6 +93,7 @@ const IndexPage = () => {
   if (isBrowser) {
     window.addEventListener('scroll', changeImagePosition)
   }
+
 
 
     return(
@@ -177,19 +180,23 @@ const IndexPage = () => {
             <div className="w-full max-w-500px select-none">
               <p className="text-secondary leading-7 text-xl mt-6 md:mt-0 text-center md:text-left">Here are a few technologies I've been working with recently:</p>
               <div className="tech flex flex-row flex-wrap justify-items-center items-center text-secondary text-lg mt-6">
-              <TechItem title={'JavaScript ES6+'} imgSrc={jsImg} />
-              <TechItem title={'React'} imgSrc={reactImg} />
-              <TechItem title={'TailwindCSS'} imgSrc={vueImg} />
-              <TechItem title={'SCSS'} imgSrc={jsImg} />
+              <TechItem title={'JavaScript ES6+'} name={'javascript'} />
+              <TechItem title={'React with Redux, Thunk, Saga'} name={'react'} />
+              <TechItem title={'SCSS'} name={'sass'} />
+              <TechItem title={'GraphQL'} name={'graphql'} />
                 {techList ? <React.Fragment>
-                  <TechItem title={'Git'} imgSrc={jsImg} />
-                  <TechItem title={'Photoshop'} imgSrc={jsImg} />
-                  <TechItem title={'Sketch'} imgSrc={jsImg} />
-                  <TechItem title={'Bootstrap'} imgSrc={jsImg} />
-                  <TechItem title={'Styled Components'} imgSrc={jsImg} />
-                  <TechItem title={'Gatsby'} imgSrc={jsImg} />
-                  <TechItem title={'GraphQL'} imgSrc={jsImg} />
-                  <TechItem title={'Firebase'} imgSrc={jsImg} />
+                  <TechItem title={'Styled Components'} name={'styledcomponents'} />
+                  <TechItem title={'Photoshop'} name={'photoshop'} />
+                  <TechItem title={'Sketch'} name={'sketch'} />
+                  <TechItem title={'TailwindCSS'} name={'tcss'} />
+                  <TechItem title={'Bootstrap 5'} name={'bootstrap'} />
+                  <TechItem title={'Gatsby'} name={'gatsby'} />
+                  <TechItem title={'MongoDB'} name={'mongodb'} />
+                  <TechItem title={'Git'} name={'git'} />
+                  <TechItem title={'Typescript'} name={'typescript'} />
+                  <TechItem title={'RESTful API'} name={'restapi'} />
+                  <TechItem title={'Zeplin'} name={'zeplin'} />
+                  <TechItem title={'Figma'} name={'figma'} />
                 </React.Fragment> : ''}
               </div>
               <button type="button" className="text-center text-xl w-full bg-transparent py-5 border-2 mt-4 text-link font-medium hover:border-transparent hover:bg-gray-100 transition-all flex flex-row items-center gap-3 justify-center" onClick={() => setTechList(!techList)}>{techList ? 'Show Less' : 'Show All'}<img src={dropDown} className={techList ? 'transform rotate-180 text-white' : ''}  /></button>
@@ -248,7 +255,9 @@ const SectionTitle = (props) => <h2 className="text-white text-center text-4xl m
 
 const TechItem = (props) => {
   return (
-    <div className="flex items-center mb-6 font-medium"><img src={props.imgSrc} className="block pr-4" />{props.title}</div>
+    <div className="flex items-center mb-6 font-medium gap-2">
+      <TechIcon name={props.name} size={props.size} /><span>{props.title}</span>
+    </div>
   )
 }
 

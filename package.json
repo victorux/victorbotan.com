@@ -23,6 +23,7 @@
     "gatsby-plugin-mdx": "^1.0.1",
     "gatsby-plugin-react-helmet": "^3.10.0",
     "gatsby-plugin-sharp": "^2.14.4",
+    "gatsby-plugin-svg-sprite": "^2.0.1",
     "gatsby-source-filesystem": "^2.11.1",
     "gatsby-transformer-remark": "^4.10.0",
     "gatsby-transformer-sharp": "^2.12.1",
